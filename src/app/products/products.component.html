@@ -1,0 +1,22 @@
+<div *ngFor="let p of products; let i = index">
+    
+    <div class="product-container" [ngStyle]="{backgroundColor: p.status === 'Available' ? '#D5F5E3' : '#FADBD8'}">
+        <div class="image-container"><img [src]="p.image" alt="" style="max-height: 50px; max-width: 50px;"></div>
+        <div>
+            <div class="name-container">
+                <h6>{{p.name}}</h6>
+            </div>
+            <div class="detailContainer">
+                <div class="datails" [ngStyle]="{color: p.status === 'Available' ? 'Green' : 'Red'}">{{p.status}}</div>
+                <div class="datails"><b>Price: </b>{{ currency + p.price }}</div>
+            </div>
+        </div>
+        <div class="options">
+            <button class="btn btn-success"> Show Details </button>
+            <button class="btn btn-warning" *ngIf="p.status === 'Available'; else notifyme"> Buy Now </button>
+            <ng-template #notifyme>
+                <button class="btn btn-danger"> Notify me</button>
+            </ng-template>
+        </div>
+    </div>
+</div>
