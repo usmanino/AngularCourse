@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Augular Course';
-  message = 'Error occurs in the template of component AppComponent';
-  
+  sitename:string = 'Food Application'; 
 }
 

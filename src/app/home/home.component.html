@@ -1,6 +1,9 @@
+<div class="wrapper">
+    <app-header></app-header>
+    <app-notification></app-notification>
 
 <div>
-    <app-search ></app-search>
+    <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
     <app-filter [all]="getTotalProducts()"
     [food]="getTotalFoods()"
     [drink]="getTotalDrinks()"
@@ -8,8 +11,9 @@
        </app-filter>
 </div>
 
-<ng-container *ngFor="let p of products">
-    <div *ngIf="productCountradioButton === 'All' || productCountradioButton === p.type">
+<ng-container *ngFor="let p of product">
+    <!-- *ngIf="productCountradioButton === 'All' || productCountradioButton === p.type" -->
+    <div *ngIf="searchText === '' || p.name.toLowerCase().includes(searchText) ">
         <div class="product-container" [ngStyle]="{backgroundColor: p.status === 'Available' ? '#D5F5E3' : '#FADBD8'}">
             <div class="image-container"><img [src]="p.image" alt="" style="max-height: 50px; max-width: 50px;"></div>
             <div>
@@ -31,3 +35,4 @@
         </div>
     </div>
 </ng-container>
+</div>
