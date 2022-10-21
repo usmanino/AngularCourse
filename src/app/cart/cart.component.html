@@ -1,1 +1,71 @@
-<p>cart works!</p>
+<div class="main-area">
+    <div class="content-area">
+      <div class="header">
+        <h1>Manage Products</h1>
+        <hr>
+      </div>
+      <div class="container">
+        <!--Add product form-->
+        <div class="form-area">
+          <h3>Create Product</h3>
+          <form #productForm="ngForm" (ngSubmit)="onProductCreate(productForm.value)">
+            <label>Procuct Name</label>
+            <input type="text" name="pName" ngModel>
+        
+            <label>Procuct Description</label>
+            <input type="text" name="desc" ngModel>
+        
+            <label>Procuct Price</label>
+            <input type="text" name="price" ngModel>
+
+            <label>Procuct Type</label>
+            <input type="text" name="type" ngModel>
+
+            <label>Procuct Status</label>
+            <input type="text" name="status" ngModel>
+  
+            <input type="submit" value="Add Product">
+          </form>
+        </div>
+  
+        <!--Display product area-->
+        <div class="product-display-area">
+          <h3>All Products</h3>
+          <table id="products">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Type</th>
+              <th>Status</th>
+            </tr>
+            <!-- <tr>
+              <td colspan="5">No Products Available!</td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+            </tr>
+            <tr>
+              <td colspan="5">Loading....</td>
+            </tr> -->
+            <tr *ngFor="let p of allProducts;  index as i">
+              <td>{{i + 1}}</td>
+              <td>{{p.pName}}</td>
+              <td>{{p.desc}}</td>
+              <td>N {{p.price}}</td>
+              <td>{{p.type}}</td>
+              <td>{{p.status}}</td>
+              <td><button class="btn-delete">Delete</button></td>
+              <td><button class="btn-edit">Edit</button></td>
+            </tr>
+          </table>
+          <hr>
+          <div class="action-btn-container">
+            <button class="btn-fetch" (click)="onProductsFetchs()">Fetch Product</button>
+            <button class="btn-clear">Clear Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

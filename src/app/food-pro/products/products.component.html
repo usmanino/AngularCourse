@@ -1,11 +1,14 @@
 <!-- <ng-container *ngFor="let p of products"> -->
-    <p>Hello</p>
     <div class="course-container">
         <div>
             <img src="{{product.image}}" width="560" height="280">
+          
         </div>
         <div>
-            <h1 style="text-align: center;">{{product.name}}</h1>
+            <h1 style="text-align: center;" *ngIf="!editMode">{{product.name}}</h1>
+            <div style="text-align: center;" *ngIf="editMode">
+                <input type="text" [(ngModel)]="product.name">
+            </div>
         </div>
         <div class="course-details">
             <!-- <div style="margin: 0px 10px;"><b>Author: </b>{{p.author}}</div> -->
@@ -13,11 +16,17 @@
             <div style="margin: 0px 10px;"><b>Type: </b>{{product.type}}</div>
         </div>
         <div style="margin: 0px 10px;">
-            <h2>Price: {{product.price}}$</h2>
+            <h2>Price: {{currency + " " +product.price}}</h2>
         </div>
         <div style="margin: 20px 10px;">
             <p>{{product.description}}</p>
         </div>
+
+        <button class="btn" (click)="appendQueryParam()"> Edit </button>
+        <button class="btn" [routerLink]="['/Product', product.id]"> Update </button>
+
+        <!-- <a [routerLink]="['/Product', 1]">Go to first Product</a> -->
+        <!-- <button [routerLink]="['/Product', product.id]" [queryParams]="{edit: true}">Edit</button> -->
     </div>
     
 <!-- </ng-container> -->

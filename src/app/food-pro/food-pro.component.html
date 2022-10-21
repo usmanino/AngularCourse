@@ -10,7 +10,7 @@
                 <div class="course-description"><p>{{product.description.slice(0, 80)}}...</p></div>
                 <div class="details">
                     <div class="course-type" [ngStyle]="{color: product.type === 'food' ? 'Green' : 'Red'}">{{product.type}}</div>
-                    <div class="course-price"><b>Price:</b> ${{product.price}}</div>
+                    <div class="course-price"><b>Price:</b>  {{currency + " " + product.price}}</div>
                 </div>
                 <div class="course-buttons">
                     <button class="btn btn-buy">Buy Now</button>

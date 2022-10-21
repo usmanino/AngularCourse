@@ -15,3 +15,8 @@ export class ProductService{
         
       ]
 }
+
+
+export class CurrencyType{
+  currency:string = '₦';
+}

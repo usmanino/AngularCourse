@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../ProductServices/services';
+import { CurrencyType, ProductService } from '../ProductServices/services';
 
 @Component({
   selector: 'app-food-pro',
@@ -8,12 +8,14 @@ import { ProductService } from '../ProductServices/services';
 })
 export class FoodProComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private currencyType: CurrencyType) { }
 
   product: any;
+  currency:any;
 
   ngOnInit(): void {
     this.product = this.productService.products;
+    this.currency = this.currencyType.currency;
   }
 
 
