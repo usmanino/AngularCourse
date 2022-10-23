@@ -22,9 +22,9 @@
             <input type="text" name="type" ngModel>
 
             <label>Procuct Status</label>
-            <input type="text" name="status" ngModel>
+            <input type="text"  name="status" ngModel>
   
-            <input type="submit" value="Add Product">
+            <input type="submit" value="{{editMode ? 'update Product' : 'Add Product'}}">
           </form>
         </div>
   
@@ -40,30 +40,34 @@
               <th>Type</th>
               <th>Status</th>
             </tr>
-            <!-- <tr>
+             <tr *ngIf="allProducts.length < 1 && !isFetching">
               <td colspan="5">No Products Available!</td>
             </tr>
-            <tr>
+            <tr *ngIf="errorMessage">
+              <td colspan="5">{{errorMessage}}</td>
+            </tr>
+            <tr *ngIf="isFetching && !errorMessage">
+              <td colspan="5">Loading....</td>
+            </tr>
+            <!-- <tr>
               <td colspan="5"></td>
             </tr>
-            <tr>
-              <td colspan="5">Loading....</td>
-            </tr> -->
+            -->
             <tr *ngFor="let p of allProducts;  index as i">
               <td>{{i + 1}}</td>
               <td>{{p.pName}}</td>
               <td>{{p.desc}}</td>
-              <td>N {{p.price}}</td>
+              <td> {{currency + p.price}}</td>
               <td>{{p.type}}</td>
               <td>{{p.status}}</td>
-              <td><button class="btn-delete">Delete</button></td>
-              <td><button class="btn-edit">Edit</button></td>
+              <td><button class="btn-delete" (click)="onDeleteProducts(p.id)">Delete</button></td>
+              <td><button class="btn-edit" (click)="onEditClicked(p.id)">Edit</button></td>
             </tr>
           </table>
           <hr>
           <div class="action-btn-container">
             <button class="btn-fetch" (click)="onProductsFetchs()">Fetch Product</button>
-            <button class="btn-clear">Clear Product</button>
+            <button class="btn-clear" (click)="onDeleteAllProducts()">Clear Product</button>
           </div>
         </div>
       </div>
